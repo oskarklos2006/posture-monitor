@@ -41,8 +41,6 @@ The project is split into 3 stages:
 Input (39) → Dense (64, ReLU) → Dense (32, ReLU) → Output (2 classes)
 ```
 
-- Achieved **100% accuracy** on the test set
-- Saved trained model to `model.pkl`
 
 ### 3. Real-Time Detection — `posture_monitor.ipynb`
 
@@ -90,7 +88,6 @@ posture-monitor/
 - **Neural network training** — understanding loss convergence, epochs, and iterations
 - **Evaluation metrics** — precision, recall, confusion matrix
 - **Training/inference consistency** — applying the exact same preprocessing (column drops) at inference time
-- **Why 100% accuracy can be legitimate** — small, clean, balanced, well-defined binary classification task
 
 ---
 
