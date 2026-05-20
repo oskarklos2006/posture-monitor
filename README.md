@@ -1,6 +1,6 @@
 # 🧍 Real-Time Posture Monitor
 
-A computer vision system that watches your posture through your webcam and gives you live feedback — green for good posture, red for slouching.
+A computer vision system that watches your posture through your webcam and gives you live feedback, green for good posture, red for slouching.
 
 Built with YOLOv8 pose estimation and a custom-trained neural network classifier.
 
@@ -22,18 +22,18 @@ The system runs in real-time, analyzing every webcam frame and overlaying the re
 
 The project is split into 3 stages:
 
-### 1. Data Collection — `collect_data.ipynb`
+### 1. Data Collection - `collect_data.ipynb`
 
 - Opens your webcam and runs **YOLOv8 pose estimation** on every frame
 - YOLOv8 detects **17 body keypoints** (nose, shoulders, elbows, wrists, hips, etc.)
 - Each keypoint produces 3 values: `x position`, `y position`, `confidence` → **51 features per frame**
 - Frames are labeled live using keyboard shortcuts (`g` = good posture, `s` = slouch)
-- Collected **300 labeled frames** saved to `posture_data.csv` — perfectly balanced (150 per class)
+- Collected **300 labeled frames** saved to `posture_data.csv`, perfectly balanced (150 per class)
 
-### 2. Model Training — `train.ipynb`
+### 2. Model Training - `train.ipynb`
 
 - Loaded and explored the CSV data
-- Dropped keypoints 13–16 (knees and ankles — out of frame) → reduced to **39 features**
+- Dropped keypoints 13–16 (knees and ankles - out of frame) → reduced to **39 features**
 - Split data: **80% training / 20% test**
 - Trained a small feedforward neural network:
 
@@ -42,7 +42,7 @@ Input (39) → Dense (64, ReLU) → Dense (32, ReLU) → Output (2 classes)
 ```
 
 
-### 3. Real-Time Detection — `posture_monitor.ipynb`
+### 3. Real-Time Detection - `posture_monitor.ipynb`
 
 - Loads YOLOv8 + `model.pkl`
 - For every webcam frame: extracts keypoints → drops the same 12 columns → feeds into classifier
@@ -82,12 +82,12 @@ posture-monitor/
 
 ## Key Concepts Applied
 
-- **Keypoint extraction** — using YOLOv8's pose model to turn video frames into structured feature vectors
-- **Feature engineering** — identifying and removing out-of-frame keypoints to clean input data
-- **Train/test split** — holding out 20% of data to get an honest accuracy estimate
-- **Neural network training** — understanding loss convergence, epochs, and iterations
-- **Evaluation metrics** — precision, recall, confusion matrix
-- **Training/inference consistency** — applying the exact same preprocessing (column drops) at inference time
+- **Keypoint extraction** - using YOLOv8's pose model to turn video frames into structured feature vectors
+- **Feature engineering** - identifying and removing out-of-frame keypoints to clean input data
+- **Train/test split** - holding out 20% of data to get an honest accuracy estimate
+- **Neural network training** - understanding loss convergence, epochs, and iterations
+- **Evaluation metrics** - precision, recall, confusion matrix
+- **Training/inference consistency** - applying the exact same preprocessing (column drops) at inference time
 
 ---
 
@@ -114,8 +114,8 @@ pip install ultralytics scikit-learn opencv-python pandas numpy joblib
 
 ## Notes
 
-- The model is trained on **your own posture data** — it learns what good vs. bad posture looks like specifically for you and your camera setup
-- Lighting and camera angle matter — collect data in the same conditions you'll use the monitor in
+- The model is trained on **your own posture data** - it learns what good vs. bad posture looks like specifically for you and your camera setup
+- Lighting and camera angle matter - collect data in the same conditions you'll use the monitor in
 - Knees and ankles are excluded since a typical desk webcam won't capture them reliably
 
 ---
